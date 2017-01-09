@@ -14,6 +14,10 @@
 		3BBECE5E1E214E6A004355F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBECE5C1E214E6A004355F8 /* LaunchScreen.storyboard */; };
 		3BBECE691E214E6B004355F8 /* WITTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE681E214E6B004355F8 /* WITTests.swift */; };
 		3BBECE741E214E6B004355F8 /* WITUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE731E214E6B004355F8 /* WITUITests.swift */; };
+		3BBECE821E23B3DE004355F8 /* WITNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE811E23B3DE004355F8 /* WITNViewController.swift */; };
+		3BBECE861E23DFD9004355F8 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE851E23DFD9004355F8 /* homeViewController.swift */; };
+		3BBECE881E23E038004355F8 /* cameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE871E23E038004355F8 /* cameraViewController.swift */; };
+		3BBECE8A1E23E5E2004355F8 /* addPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE891E23E5E2004355F8 /* addPostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		3BBECE6F1E214E6B004355F8 /* WITUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WITUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBECE731E214E6B004355F8 /* WITUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WITUITests.swift; sourceTree = "<group>"; };
 		3BBECE751E214E6B004355F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BBECE811E23B3DE004355F8 /* WITNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WITNViewController.swift; sourceTree = "<group>"; };
+		3BBECE851E23DFD9004355F8 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
+		3BBECE871E23E038004355F8 /* cameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
+		3BBECE891E23E5E2004355F8 /* addPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addPostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,10 @@
 				3BBECE5A1E214E6A004355F8 /* Assets.xcassets */,
 				3BBECE5C1E214E6A004355F8 /* LaunchScreen.storyboard */,
 				3BBECE5F1E214E6A004355F8 /* Info.plist */,
+				3BBECE811E23B3DE004355F8 /* WITNViewController.swift */,
+				3BBECE851E23DFD9004355F8 /* homeViewController.swift */,
+				3BBECE871E23E038004355F8 /* cameraViewController.swift */,
+				3BBECE891E23E5E2004355F8 /* addPostViewController.swift */,
 			);
 			path = WIT;
 			sourceTree = "<group>";
@@ -193,7 +205,13 @@
 				TargetAttributes = {
 					3BBECE4F1E214E6A004355F8 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9XBSPE6LZ2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					3BBECE631E214E6B004355F8 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -261,6 +279,10 @@
 			files = (
 				3BBECE561E214E6A004355F8 /* ViewController.swift in Sources */,
 				3BBECE541E214E6A004355F8 /* AppDelegate.swift in Sources */,
+				3BBECE881E23E038004355F8 /* cameraViewController.swift in Sources */,
+				3BBECE821E23B3DE004355F8 /* WITNViewController.swift in Sources */,
+				3BBECE8A1E23E5E2004355F8 /* addPostViewController.swift in Sources */,
+				3BBECE861E23DFD9004355F8 /* homeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,7 +434,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9XBSPE6LZ2;
 				INFOPLIST_FILE = WIT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Project.WIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,7 +448,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9XBSPE6LZ2;
 				INFOPLIST_FILE = WIT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Project.WIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -438,6 +464,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WITTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Project.WITTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -452,6 +479,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WITTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Project.WITTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -465,6 +493,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = WITUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Project.WITUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -478,6 +507,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = WITUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Project.WITUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,6 +535,7 @@
 				3BBECE7A1E214E6B004355F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3BBECE7B1E214E6B004355F8 /* Build configuration list for PBXNativeTarget "WITTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +544,7 @@
 				3BBECE7D1E214E6B004355F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3BBECE7E1E214E6B004355F8 /* Build configuration list for PBXNativeTarget "WITUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +553,7 @@
 				3BBECE801E214E6B004355F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
