@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BA52F781E2BC22900776ABA /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA52F771E2BC22900776ABA /* settingsViewController.swift */; };
+		3BA52F7A1E2BD08F00776ABA /* postTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA52F791E2BD08F00776ABA /* postTableViewCell.swift */; };
+		3BA52F7C1E2BD1CF00776ABA /* postTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA52F7B1E2BD1CF00776ABA /* postTableViewController.swift */; };
+		3BA52F7E1E2BDBA800776ABA /* postDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA52F7D1E2BDBA800776ABA /* postDetailsViewController.swift */; };
+		3BA52F801E2BE25300776ABA /* galleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA52F7F1E2BE25300776ABA /* galleryViewController.swift */; };
 		3BBECE541E214E6A004355F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE531E214E6A004355F8 /* AppDelegate.swift */; };
 		3BBECE561E214E6A004355F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBECE551E214E6A004355F8 /* ViewController.swift */; };
 		3BBECE591E214E6A004355F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBECE571E214E6A004355F8 /* Main.storyboard */; };
@@ -38,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BA52F771E2BC22900776ABA /* settingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
+		3BA52F791E2BD08F00776ABA /* postTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postTableViewCell.swift; sourceTree = "<group>"; };
+		3BA52F7B1E2BD1CF00776ABA /* postTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postTableViewController.swift; sourceTree = "<group>"; };
+		3BA52F7D1E2BDBA800776ABA /* postDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postDetailsViewController.swift; sourceTree = "<group>"; };
+		3BA52F7F1E2BE25300776ABA /* galleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = galleryViewController.swift; sourceTree = "<group>"; };
 		3BBECE501E214E6A004355F8 /* WIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBECE531E214E6A004355F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BBECE551E214E6A004355F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,11 +120,16 @@
 				3BBECE571E214E6A004355F8 /* Main.storyboard */,
 				3BBECE5A1E214E6A004355F8 /* Assets.xcassets */,
 				3BBECE5C1E214E6A004355F8 /* LaunchScreen.storyboard */,
+				3BA52F7B1E2BD1CF00776ABA /* postTableViewController.swift */,
 				3BBECE5F1E214E6A004355F8 /* Info.plist */,
 				3BBECE811E23B3DE004355F8 /* WITNViewController.swift */,
 				3BBECE851E23DFD9004355F8 /* homeViewController.swift */,
 				3BBECE871E23E038004355F8 /* cameraViewController.swift */,
 				3BBECE891E23E5E2004355F8 /* addPostViewController.swift */,
+				3BA52F771E2BC22900776ABA /* settingsViewController.swift */,
+				3BA52F791E2BD08F00776ABA /* postTableViewCell.swift */,
+				3BA52F7D1E2BDBA800776ABA /* postDetailsViewController.swift */,
+				3BA52F7F1E2BE25300776ABA /* galleryViewController.swift */,
 			);
 			path = WIT;
 			sourceTree = "<group>";
@@ -277,12 +292,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA52F801E2BE25300776ABA /* galleryViewController.swift in Sources */,
 				3BBECE561E214E6A004355F8 /* ViewController.swift in Sources */,
 				3BBECE541E214E6A004355F8 /* AppDelegate.swift in Sources */,
 				3BBECE881E23E038004355F8 /* cameraViewController.swift in Sources */,
+				3BA52F7A1E2BD08F00776ABA /* postTableViewCell.swift in Sources */,
 				3BBECE821E23B3DE004355F8 /* WITNViewController.swift in Sources */,
 				3BBECE8A1E23E5E2004355F8 /* addPostViewController.swift in Sources */,
 				3BBECE861E23DFD9004355F8 /* homeViewController.swift in Sources */,
+				3BA52F7E1E2BDBA800776ABA /* postDetailsViewController.swift in Sources */,
+				3BA52F7C1E2BD1CF00776ABA /* postTableViewController.swift in Sources */,
+				3BA52F781E2BC22900776ABA /* settingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

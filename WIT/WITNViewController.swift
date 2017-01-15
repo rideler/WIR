@@ -15,11 +15,7 @@ class WITNViewController: UIViewController {
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var sliderValue: UILabel!
     
-    @IBAction func valueChanged(_ sender: UISlider) {
-        let currentValue = Int(slider.value)
-        sliderValue.text = "\(currentValue)%"
-        sliderValue.frame = CGRect(x: Int(141 + 1.7*slider.value), y: 108, width: 49, height: 25)
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,9 +24,14 @@ class WITNViewController: UIViewController {
         let components: NSDateComponents = NSDateComponents()
         
         let minDate: NSDate = calender.date(byAdding: components as DateComponents, to: currentDate as Date, options: NSCalendar.Options(rawValue: 0))! as NSDate
-        
-        components.day = 26
+                
+        components.day = 10
         let maxDate: NSDate = calender.date(byAdding: components as DateComponents, to: currentDate as Date, options: NSCalendar.Options(rawValue: 0))! as NSDate
+        
+        self.startDate.date = currentDate as Date
+        self.endDate.date = currentDate as Date
+        
+       // let hour = calender.component(NSCalendar.Unit.hour, from: startDate.date)
         
         self.startDate.minimumDate = minDate as Date
         self.startDate.maximumDate = maxDate as Date
@@ -40,22 +41,31 @@ class WITNViewController: UIViewController {
         
         let currentValue = Int(slider.value)
         sliderValue.text = "\(currentValue)%"
-        sliderValue.frame = CGRect(x: Int(141 + 1.7*slider.value), y: 108, width: 49, height: 25)
+        sliderValue.frame = CGRect(x: Int(139 + 1.7*slider.value), y: 91, width: 197, height: 31)
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func startDateChanged(_ sender: UIDatePicker) {
+    @IBAction func DateChanged(_ sender: UIDatePicker) {
+     
         let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        let components: NSDateComponents = NSDateComponents()
         
-        let minDate: NSDate = calender.date(byAdding: components as DateComponents, to: startDate.date as Date, options: NSCalendar.Options(rawValue: 0))! as NSDate
+        self.endDate.minimumDate = self.startDate.date
         
-        self.endDate.minimumDate = minDate as Date
-        
-        //calculate the number of days
-        /*let daysBetween = calender.components(NSCalendar.Unit.day, from: self.startDate.date, to: self.endDate.date, options: NSCalendar.Options.matchStrictly)
-        let daysINhours = (daysBetween).day!*24 */
+        let hoursBetween = calender.components(NSCalendar.Unit.hour, from: self.startDate.date, to: self.endDate.date, options: NSCalendar.Options.matchStrictly)
+        if hoursBetween.hour! < 0 {
+            self.endDate.date = self.endDate.minimumDate!
+        }
 
+ //       let hour = calender.component(NSCalendar.Unit.hour, from: startDate.date)
+        
+    }
+    
+    
+    
+    @IBAction func valueChanged(_ sender: UISlider) {
+        let currentValue = Int(slider.value)
+        sliderValue.text = "\(currentValue)%"
+        sliderValue.frame = CGRect(x: Int(139 + 1.7*slider.value), y: 91, width: 197, height: 31)
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,7 +73,15 @@ class WITNViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func check(_ sender: UIButton) {
+   //     let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        //calculate the number of hours
+    //    let hoursBetween = calender.components(NSCalendar.Unit.hour, from: self.startDate.date, to: self.endDate.date, options: NSCalendar.Options.matchStrictly)
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 
