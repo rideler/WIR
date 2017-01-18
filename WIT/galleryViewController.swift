@@ -26,15 +26,11 @@ class galleryViewController: UIViewController , UIImagePickerControllerDelegate,
             
             self.present(imagePicker, animated: false, completion: nil)
         }
-        cncl = true
+        cncl = false
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         if cncl == true {
-            cncl = false
-            tabBarController?.selectedIndex = 0
-        }
-        else {
             if UIImagePickerController.isSourceTypeAvailable(
                 UIImagePickerControllerSourceType.photoLibrary) {
                 
@@ -42,9 +38,16 @@ class galleryViewController: UIViewController , UIImagePickerControllerDelegate,
                 imagePicker.allowsEditing = false
                 
                 self.present(imagePicker, animated: false, completion: nil)
-                cncl = true
+                cncl = false
             }
         }
+        else{
+            _ = self.navigationController?.popToRootViewController(animated: false)
+        }
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        cncl = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,7 +72,6 @@ class galleryViewController: UIViewController , UIImagePickerControllerDelegate,
         // Pass the selected object to the new view controller.
         if segue.identifier == "photoLibraryPost" {
             if let destinationVC = segue.destination as? addPostViewController {
-                cncl = false
                 destinationVC.postImg = self.img
             }
             

@@ -32,7 +32,7 @@ class cameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         open override func viewDidAppear(_ animated: Bool) {
             if cncl == true {
                 cncl = false
-                tabBarController?.selectedIndex = 0
+                tabBarController?.selectedIndex = 3
             }
             else {
                  if UIImagePickerController.isSourceTypeAvailable(
@@ -42,6 +42,10 @@ class cameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                     imagePicker.allowsEditing = false
                     
                     self.present(imagePicker, animated: false, completion: nil)
+                    cncl = true
+                }
+                 else{
+                    tabBarController?.selectedIndex = 3
                     cncl = true
                 }
             }
