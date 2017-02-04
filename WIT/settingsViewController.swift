@@ -8,17 +8,27 @@
 
 import UIKit
 
-class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
-    var list = ["1", "2", "3", "4", "5"]
     
+    var list = [String]()
+    
+    @IBOutlet weak var rainSlider: UISlider!
+    @IBOutlet weak var periodSlider: UISlider!
+    @IBOutlet weak var periodValue: UILabel!
+    @IBOutlet weak var rainValue: UILabel!
     @IBOutlet weak var dataPicker: UIPickerView!
-    @IBOutlet weak var pick: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let lctn = Location()
+        self.list = lctn.getStringLocations()
         self.dataPicker.delegate = self
-        self.pick.delegate = self
+        
+        var currentValue = Int(rainSlider.value)
+        rainValue.text = "\(currentValue)%"
+        currentValue = Int(periodSlider.value)
+        periodValue.text = "\(currentValue)"
         // Do any additional setup after loading the view.
     }
     
@@ -41,17 +51,23 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.pick.text = self.list[row]
-        self.dataPicker.isHidden = true
-        self.pick.isHidden = false
+        print("\(list[row])")
+        //save location to db
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == self.pick {
-            self.pick.isHidden = true
-            self.dataPicker.isHidden = false
-        }
+    
+    @IBAction func rainChanged(_ sender: UISlider) {
+        let currentValue = Int(sender.value)
+        rainValue.text = "\(currentValue)%"
     }
+    
+    @IBAction func periodChanged(_ sender: UISlider) {
+        let currentValue = Int(sender.value)
+        periodValue.text = "\(currentValue)"
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

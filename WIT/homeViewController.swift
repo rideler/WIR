@@ -17,7 +17,7 @@ class homeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let wit = Weather()
-        let res = wit.getWeather(country: "israel",city: "Jerusalem", startTime: 1485277200, period: 200 , pop: 99)
+        let res = wit.getWeather(country: "israel",city: "Jerusalem", startTime: Int(NSDate().timeIntervalSince1970), period: 5 , pop: 1)
         yesORno(answer: res)
         // Do any additional setup after loading the view.
     }

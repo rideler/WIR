@@ -12,13 +12,13 @@ class Weather {
     private let openWeatherMapBaseURL = "https://api.wunderground.com/api/59c65dea745e9573/hourly10day/q/"
     private var popIndex = 0
     private var epoIndex = 0
-    private var inFunc = true
 
     func getWeather(country: String, city: String, startTime: Int, period: Int, pop: Int) -> Bool {
         
+        print("epoch: \(startTime) period \(period)")
         // This is a pretty simple networking task, so the shared session will do.
         let session = URLSession.shared
-        var res:Bool = false
+        var res:Bool? = nil
         var cnt = period
         
         let weatherRequestURL = URL(string: "\(openWeatherMapBaseURL)\(country)/\(city).json")!
@@ -54,9 +54,6 @@ class Weather {
                             self.epoIndex += 1
                         }
 
-                        print ("\npop: \(self.popIndex)")
-                        print ("\nfc: \(self.epoIndex)")
-
                         for obj in array {
                             if (cnt == 0) {
                                 break
@@ -71,7 +68,9 @@ class Weather {
                                         if let intPop = Int(tempPop[1].trimmingCharacters(in: .whitespacesAndNewlines)){
                                             if intPop >= pop {
                                                 res = true
+                                                print("pop \(intPop) index \(cnt)")
                                                 break
+                                                
                                             }
                                         }
 
@@ -86,13 +85,15 @@ class Weather {
                     
                 }
             }
-            self.inFunc = false
+            if (res == nil){
+                res = false
+            }
         }
         // The data task is set up...launch it!
         dataTask.resume()
-        while (self.inFunc){}
+        while (res == nil){}
         print ("\(res)")
-        return res
+        return res!
     }
     
 }
