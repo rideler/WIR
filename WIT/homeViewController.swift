@@ -11,14 +11,18 @@ import Foundation
 
 
 class homeViewController: UIViewController {
-        
+    
+    var pop:Int = 0
+    var period:Int = 0
+    var country:String = ""
+    var city:String = ""
+    
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var lction: UILabel!
     @IBOutlet weak var yesNO: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let wit = Weather()
-        let res = wit.getWeather(country: "israel",city: "Jerusalem", startTime: Int(NSDate().timeIntervalSince1970), period: 5 , pop: 1)
-        yesORno(answer: res)
         // Do any additional setup after loading the view.
     }
 
@@ -27,6 +31,9 @@ class homeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getCalculations()
+    }
     
     func yesORno(answer: Bool){
         if answer{
@@ -36,6 +43,31 @@ class homeViewController: UIViewController {
             yesNO.image = #imageLiteral(resourceName: "No")
         }
     }
+    
+    private func getCalculations(){
+        let wit = Weather()
+        ModelSettings.instance?.getSettings(){ (settings) in
+            self.pop = settings.pop
+            self.period = settings.period
+            self.country = settings.country
+            self.city = settings.city
+        }
+        
+        lction.text = "\(self.country),  \(self.city)"
+        let res = wit.getWeather(country: self.country,city: self.city, startTime: Int(NSDate().timeIntervalSince1970), period: self.period , pop: self.pop)
+        yesORno(answer: res)
+        self.spinner.stopAnimating()
+        self.spinner.isHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
+        yesNO.image = nil
+        lction.text = ""
+    }
+    
+    
     /*
     // MARK: - Navigation
 

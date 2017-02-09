@@ -10,6 +10,10 @@ import UIKit
 
 class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
+    var pop:Int = 0
+    var period:Int = 0
+    var country:String = ""
+    var city:String = ""
     
     var list = [String]()
     
@@ -20,11 +24,22 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var dataPicker: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let lctn = Location()
         self.list = lctn.getStringLocations()
         self.dataPicker.delegate = self
         
+        ModelSettings.instance?.getSettings(){ (settings) in
+            self.pop = settings.pop
+            self.period = settings.period
+            self.country = settings.country
+            self.city = settings.city
+        }
+        
+        self.dataPicker.selectRow(lctn.searchRow(city: self.city, country: self.country)!, inComponent: 0, animated: false)
+
+        rainSlider.value = Float(self.pop)
+        periodSlider.value = Float(self.period)
         var currentValue = Int(rainSlider.value)
         rainValue.text = "\(currentValue)%"
         currentValue = Int(periodSlider.value)
@@ -52,18 +67,27 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("\(list[row])")
+        self.country = Location().getCountry(row: row)
+        self.city = Location().getCity(row: row)
         //save location to db
+        ModelSettings.instance?.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
     }
     
     
     @IBAction func rainChanged(_ sender: UISlider) {
         let currentValue = Int(sender.value)
         rainValue.text = "\(currentValue)%"
+        self.pop = currentValue
+        
+        ModelSettings.instance?.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
     }
     
     @IBAction func periodChanged(_ sender: UISlider) {
         let currentValue = Int(sender.value)
         periodValue.text = "\(currentValue)"
+        self.period = currentValue
+        
+        ModelSettings.instance?.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
     }
     
     

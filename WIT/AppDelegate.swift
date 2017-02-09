@@ -10,13 +10,35 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        if (ModelAuth.instance.isLogedIn()){
+            
+        }else{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            window?.rootViewController = loginVc
+        }
         // Override point for customization after application launch.
         return true
+    }
+    
+    func afterLogin(){
+        window?.rootViewController?.dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVc = storyboard.instantiateViewController(withIdentifier: "MainController")
+        window?.rootViewController = mainVc
+    }
+    
+    func afterLogout(){
+        window?.rootViewController?.dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        window?.rootViewController = loginVc
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

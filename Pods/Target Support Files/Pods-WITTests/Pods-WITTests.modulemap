@@ -1,0 +1,6 @@
+framework module Pods_WITTests {
+  umbrella header "Pods-WITTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

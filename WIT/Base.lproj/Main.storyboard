@@ -155,6 +155,13 @@
                                     <outlet property="delegate" destination="0qG-Ae-xfo" id="j9u-9E-Xm9"/>
                                 </connections>
                             </pickerView>
+                            <activityIndicatorView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6xD-OM-pui">
+                                <rect key="frame" x="177" y="542" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19426864385604858" green="0.26474586129188538" blue="0.90152424573898315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <color key="color" red="0.46350133419036865" green="0.97797232866287231" blue="0.98503285646438599" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -169,6 +176,7 @@
                         <outlet property="periodValue" destination="lBc-4b-tMc" id="N4L-Nu-Mhi"/>
                         <outlet property="slider" destination="hLJ-x0-ngu" id="J1a-Yt-noY"/>
                         <outlet property="sliderValue" destination="cFL-9t-YSA" id="dnb-G9-d57"/>
+                        <outlet property="spinner" destination="6xD-OM-pui" id="mqH-FE-3Rc"/>
                         <outlet property="startDate" destination="jzT-bm-M0x" id="F9g-Fg-YCW"/>
                         <outlet property="switchEnable" destination="cpc-Cm-fOl" id="LHZ-9L-BXn"/>
                         <outlet property="wirPic" destination="ZMv-rw-4ZU" id="0B7-Rq-8pU"/>
@@ -544,13 +552,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="McP-Tm-dZz">
-                        <barButtonItem key="rightBarButtonItem" title="sign in" id="xV2-nV-MJv">
-                            <connections>
-                                <segue destination="bHr-ZT-Miq" kind="show" id="vOF-LI-cVq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="McP-Tm-dZz"/>
                     <connections>
                         <outlet property="dataPicker" destination="zgS-GS-Bx9" id="GdS-PL-mPY"/>
                         <outlet property="periodSlider" destination="Qhk-hA-7sE" id="Ihd-9T-DPS"/>
@@ -566,7 +568,7 @@
         <!--login-->
         <scene sceneID="Njt-dz-BiH">
             <objects>
-                <viewController title="login" id="bHr-ZT-Miq" customClass="loginViewController" customModule="WIT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="login" id="bHr-ZT-Miq" customClass="loginViewController" customModule="WIT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kzW-An-c53"/>
                         <viewControllerLayoutGuide type="bottom" id="cgQ-Ca-crn"/>
@@ -637,7 +639,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlV-rY-kbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2744.8000000000002" y="-1605.2473763118442"/>
+            <point key="canvasLocation" x="3446" y="33"/>
         </scene>
         <!--register-->
         <scene sceneID="wes-cA-Da2">
@@ -701,7 +703,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOC-zE-edy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3745" y="-1605"/>
+            <point key="canvasLocation" x="5180" y="33"/>
         </scene>
         <!--setting-->
         <scene sceneID="fbi-C7-Uw2">
@@ -782,13 +784,20 @@
                                 <rect key="frame" x="55" y="207" width="265" height="253"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcI-4f-5dh" userLabel="location">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcI-4f-5dh" userLabel="location">
                                 <rect key="frame" x="55" y="137" width="265" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" red="0.19426864385604858" green="0.26474586129188538" blue="0.90152424573898315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mja-Sd-EDN">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19426864385604858" green="0.26474586129188538" blue="0.90152424573898315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <color key="color" red="0.46350133419036865" green="0.97797232866287231" blue="0.98503285646438599" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -798,6 +807,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="lction" destination="wcI-4f-5dh" id="0gB-rC-TDe"/>
+                        <outlet property="spinner" destination="mja-Sd-EDN" id="hjh-gT-pOH"/>
                         <outlet property="yesNO" destination="Hzd-Dn-4Sh" id="D7d-rF-e9Q"/>
                     </connections>
                 </viewController>
@@ -808,7 +818,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="imH-8r-8aw">
             <objects>
-                <tabBarController id="ZiB-vU-hgL" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainController" id="ZiB-vU-hgL" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="41O-tK-5GJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

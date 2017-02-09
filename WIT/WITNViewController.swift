@@ -22,6 +22,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var switchEnable: UISwitch!
     @IBOutlet weak var wirPic: UIImageView!
     @IBOutlet weak var periodValue: UILabel!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     let wit = Weather()
     let lctn = Location()
@@ -29,6 +30,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.spinner.isHidden = true
         
         self.list = lctn.getStringLocations()
         self.lctions.delegate = self
@@ -70,6 +72,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     }
 
     @IBAction func DateChanged(_ sender: UIDatePicker) {
+        wirPic.image = nil
      
         let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         
@@ -84,6 +87,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func periodChanged(_ sender: UISlider) {
+        wirPic.image = nil
         let currentValue = Int(periodSlider.value)
         periodValue.text = "\(currentValue)"
         periodValue.frame = CGRect(x: Int(141 + 0.7*periodSlider.value), y: 372, width: 197, height: 31)
@@ -91,6 +95,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     
     
     @IBAction func valueChanged(_ sender: UISlider) {
+        wirPic.image = nil
         let currentValue = Int(slider.value)
         sliderValue.text = "\(currentValue)%"
         sliderValue.frame = CGRect(x: Int(139 + 1.7*slider.value), y: 91, width: 197, height: 31)
@@ -103,9 +108,12 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     
     
     @IBAction func check(_ sender: UIButton) {
+        
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
+        
         let calender = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         let pop = slider.value
-        
         
         if (self.switchEnable.isOn){
             var startDay = calender.components([.year, .month, .day, .hour], from: self.startDate.date)
@@ -122,7 +130,8 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
             yesORno(answer: res)
         }
         
-        
+        self.spinner.stopAnimating()
+        self.spinner.isHidden = true
     }
 
     @IBAction func switchChange(_ sender: UISwitch) {
@@ -162,6 +171,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        wirPic.image = nil
         self.lctionRow = row
         //save location to db
     }
