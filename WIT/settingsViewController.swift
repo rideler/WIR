@@ -29,7 +29,7 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
         self.list = lctn.getStringLocations()
         self.dataPicker.delegate = self
         
-        ModelSettings.instance?.getSettings(){ (settings) in
+        Model.instance.getSettings(){ (settings) in
             self.pop = settings.pop
             self.period = settings.period
             self.country = settings.country
@@ -70,7 +70,7 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
         self.country = Location().getCountry(row: row)
         self.city = Location().getCity(row: row)
         //save location to db
-        ModelSettings.instance?.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
+        Model.instance.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
     }
     
     
@@ -79,7 +79,7 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
         rainValue.text = "\(currentValue)%"
         self.pop = currentValue
         
-        ModelSettings.instance?.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
+        Model.instance.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
     }
     
     @IBAction func periodChanged(_ sender: UISlider) {
@@ -87,9 +87,17 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
         periodValue.text = "\(currentValue)"
         self.period = currentValue
         
-        ModelSettings.instance?.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
+        Model.instance.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
     }
     
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        Model.instance.logout(){(pass) in
+            print("\(pass)")
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.afterLogout()
+        }
+    }
+
     
     
     /*

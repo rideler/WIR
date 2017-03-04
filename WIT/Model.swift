@@ -1,5 +1,5 @@
 //
-//  ModelSettings.swift
+//  Model.swift
 //  WIT
 //
 //  Created by Shay Kremer on 2/9/17.
@@ -22,26 +22,13 @@ extension String {
 }
 
 
-class ModelSettings{
-    static let instance = ModelSettings()
-    var database: OpaquePointer? = nil
+class Model{
     
-    init?(){
-        let dbFileName = "databaseSettings.db"
-        if let dir = FileManager.default.urls(for: .documentDirectory, in:
-            .userDomainMask).first{
-            let path = dir.appendingPathComponent(dbFileName)
-            
-            if sqlite3_open(path.absoluteString, &database) != SQLITE_OK {
-                print("Failed to open db file: \(path.absoluteString)")
-                return nil
-            }
-        }
-        
-        if Settings.createTable(database: database) == false{
-            return nil
-        }
-    }
+    static let instance = Model()
+    var database: OpaquePointer? = nil
+    let userAuth: UserAuth? = UserAuth()
+    let settingsSQL: SettingsSQL? = SettingsSQL()
+    init() {}
     
 
     func changeSettings(stings:Settings){
@@ -55,7 +42,29 @@ class ModelSettings{
             //return settings
         callback(settings)
     }
+    
+    // Authentication
+    
+    func register(email:String, pwd:String, callback:@escaping (Bool)->Void){
+        userAuth?.register(email: email, pwd: pwd, callback: callback)
+    }
+    
+    func login(email:String, pwd:String, callback:@escaping (Bool)->Void){
+        userAuth?.login(email: email, pwd: pwd, callback: callback)
+        
+    }
+    
+    func logout(callback:@escaping (Bool)->Void){
+        userAuth?.logout(callback: callback)
+    }
+    
+    func isLogedIn()->Bool{
+        return (userAuth?.isLogedIn())!
+    }
 
+    func getUserId()->String{
+        return (userAuth?.getUserId())!
+    }
 }
 
 

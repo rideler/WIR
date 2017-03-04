@@ -46,7 +46,7 @@ class homeViewController: UIViewController {
     
     private func getCalculations(){
         let wit = Weather()
-        ModelSettings.instance?.getSettings(){ (settings) in
+        Model.instance.getSettings(){ (settings) in
             self.pop = settings.pop
             self.period = settings.period
             self.country = settings.country

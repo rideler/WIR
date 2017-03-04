@@ -6,10 +6,10 @@
 //  Copyright © 2017 Shay Kremer, Ron Naor. All rights reserved.
 //
 
-#ifndef WIT_Bridiging_Header_h
-#define WIT_Bridiging_Header_h
+//
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//
 
 #import <sqlite3.h>
 #import <CommonCrypto/CommonCrypto.h>
 
-#endif /* WIT_Bridiging_Header_h */

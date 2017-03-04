@@ -16,8 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        if (ModelAuth.instance.isLogedIn()){
-            
+        if (Model.instance.isLogedIn()){
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainVc = storyboard.instantiateViewController(withIdentifier: "MainController")
+            window?.rootViewController = mainVc
         }else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginVc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")

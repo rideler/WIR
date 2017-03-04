@@ -10,6 +10,7 @@ import UIKit
 
 class loginViewController: UIViewController {
     
+    @IBOutlet weak var errorMsg: UILabel!
     @IBOutlet weak var userIN: UITextField!
     @IBOutlet weak var passIN: UITextField!
     
@@ -24,6 +25,17 @@ class loginViewController: UIViewController {
     }
     
     @IBAction func logBTN(_ sender: UIButton) {
+        Model.instance.login(email: userIN.text!, pwd: passIN.text!){(pass) in
+            if (pass){
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.afterLogin()
+                self.errorMsg.isHidden = true
+            }
+            else
+            {
+                self.errorMsg.isHidden = false
+            }
+        }
     }
 
     

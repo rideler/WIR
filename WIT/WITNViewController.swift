@@ -22,15 +22,12 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var switchEnable: UISwitch!
     @IBOutlet weak var wirPic: UIImageView!
     @IBOutlet weak var periodValue: UILabel!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     let wit = Weather()
     let lctn = Location()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.spinner.isHidden = true
         
         self.list = lctn.getStringLocations()
         self.lctions.delegate = self
@@ -109,9 +106,6 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func check(_ sender: UIButton) {
         
-        self.spinner.isHidden = false
-        self.spinner.startAnimating()
-        
         let calender = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         let pop = slider.value
         
@@ -129,9 +123,6 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
             let res = wit.getWeather(country: lctn.getCountry(row: lctionRow),city: lctn.getCity(row: lctionRow), startTime: Int(NSDate().timeIntervalSince1970), period: Int(self.periodSlider.value) , pop: Int(pop))
             yesORno(answer: res)
         }
-        
-        self.spinner.stopAnimating()
-        self.spinner.isHidden = true
     }
 
     @IBAction func switchChange(_ sender: UISwitch) {
