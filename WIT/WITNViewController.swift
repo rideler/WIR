@@ -59,12 +59,9 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         
         var currentValue = Int(slider.value)
         sliderValue.text = "\(currentValue)%"
-        sliderValue.frame = CGRect(x: Int(141 + 1.7*slider.value), y: 91, width: 197, height: 31)
         
         currentValue = Int(periodSlider.value)
         periodValue.text = "\(currentValue)"
-        periodValue.frame = CGRect(x: Int(136 + 0.7*periodSlider.value), y: 372, width: 197, height: 31)
-        periodValue.layer.zPosition = 1;
         // Do any additional setup after loading the view.
     }
 
@@ -87,7 +84,6 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         wirPic.image = nil
         let currentValue = Int(periodSlider.value)
         periodValue.text = "\(currentValue)"
-        periodValue.frame = CGRect(x: Int(141 + 0.7*periodSlider.value), y: 372, width: 197, height: 31)
     }
     
     
@@ -95,7 +91,6 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         wirPic.image = nil
         let currentValue = Int(slider.value)
         sliderValue.text = "\(currentValue)%"
-        sliderValue.frame = CGRect(x: Int(139 + 1.7*slider.value), y: 91, width: 197, height: 31)
     }
     
     override func didReceiveMemoryWarning() {

@@ -89,8 +89,8 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
         
         Model.instance.changeSettings(stings: Settings(pop: self.pop, period: self.period, city: self.city, country: self.country))
     }
-    
-    @IBAction func logout(_ sender: UIBarButtonItem) {
+
+    @IBAction func logout(_ sender: UIButton) {
         Model.instance.logout(){(pass) in
             print("\(pass)")
             let appDelegate = UIApplication.shared.delegate as! AppDelegate

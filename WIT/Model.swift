@@ -25,19 +25,18 @@ extension String {
 class Model{
     
     static let instance = Model()
-    var database: OpaquePointer? = nil
     let userAuth: UserAuth? = UserAuth()
     let settingsSQL: SettingsSQL? = SettingsSQL()
     init() {}
     
 
     func changeSettings(stings:Settings){
-        stings.changeSettingsToLocalDb(database: self.database)
+        stings.changeSettingsToLocalDb(database: settingsSQL?.database)
     }
     
     func getSettings(callback:@escaping (Settings)->Void){
         //get settings from local DB
-        let settings = Settings.getSettingsFromLocalDb(database: self.database)
+        let settings = Settings.getSettingsFromLocalDb(database: settingsSQL?.database)
             
             //return settings
         callback(settings)
