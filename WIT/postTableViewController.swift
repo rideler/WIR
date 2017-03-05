@@ -13,6 +13,10 @@ class postTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(addPostViewController.postsListDidUpdate),name:NSNotification.Name(rawValue: notifyPostListUpdate),object: nil)
+        Model.instance.getAllPostsAndObserve()
+    
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -20,6 +24,9 @@ class postTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3B033B1A1E6B18B20049374A /* SettingsSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B033B191E6B18B20049374A /* SettingsSQL.swift */; };
+		3B033B1C1E6C39FD0049374A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B033B1B1E6C39FD0049374A /* Post.swift */; };
+		3B033B1E1E6C46860049374A /* PostlFireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B033B1D1E6C46860049374A /* PostlFireBase.swift */; };
+		3B033B201E6C4E590049374A /* PostSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B033B1F1E6C4E590049374A /* PostSQL.swift */; };
+		3B033B221E6C4EE10049374A /* LastUpdateTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B033B211E6C4EE10049374A /* LastUpdateTable.swift */; };
 		3B0435A51E4660D00063B4D5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0435A41E4660D00063B4D5 /* Location.swift */; };
 		3B0435A71E4C669F0063B4D5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0435A61E4C669F0063B4D5 /* Settings.swift */; };
 		3B0435AA1E4C69D60063B4D5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0435A91E4C69D60063B4D5 /* libsqlite3.0.tbd */; };
@@ -58,6 +62,10 @@
 		1E221F0C8F49F6428BDF6FD8 /* Pods-WIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WIT/Pods-WIT.debug.xcconfig"; sourceTree = "<group>"; };
 		37FBEE1776D28EF4555C1764 /* Pods_WITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B033B191E6B18B20049374A /* SettingsSQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSQL.swift; sourceTree = "<group>"; };
+		3B033B1B1E6C39FD0049374A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3B033B1D1E6C46860049374A /* PostlFireBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostlFireBase.swift; sourceTree = "<group>"; };
+		3B033B1F1E6C4E590049374A /* PostSQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSQL.swift; sourceTree = "<group>"; };
+		3B033B211E6C4EE10049374A /* LastUpdateTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUpdateTable.swift; sourceTree = "<group>"; };
 		3B0435A41E4660D00063B4D5 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3B0435A61E4C669F0063B4D5 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3B0435A91E4C69D60063B4D5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -165,6 +173,10 @@
 				3B0435AC1E4C79EB0063B4D5 /* Model.swift */,
 				3BFCBE221E6189F800D49BA7 /* UserAuth.swift */,
 				3B033B191E6B18B20049374A /* SettingsSQL.swift */,
+				3B033B1B1E6C39FD0049374A /* Post.swift */,
+				3B033B1D1E6C46860049374A /* PostlFireBase.swift */,
+				3B033B1F1E6C4E590049374A /* PostSQL.swift */,
+				3B033B211E6C4EE10049374A /* LastUpdateTable.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -531,6 +543,7 @@
 				3BA52F801E2BE25300776ABA /* galleryViewController.swift in Sources */,
 				3BBECE561E214E6A004355F8 /* loginViewController.swift in Sources */,
 				3BBECE541E214E6A004355F8 /* AppDelegate.swift in Sources */,
+				3B033B221E6C4EE10049374A /* LastUpdateTable.swift in Sources */,
 				3BA52F841E2FDCC500776ABA /* registerViewController.swift in Sources */,
 				3BBECE881E23E038004355F8 /* cameraViewController.swift in Sources */,
 				3BA52F7A1E2BD08F00776ABA /* postTableViewCell.swift in Sources */,
@@ -539,9 +552,12 @@
 				3BBECE821E23B3DE004355F8 /* WITNViewController.swift in Sources */,
 				3BBECE8A1E23E5E2004355F8 /* addPostViewController.swift in Sources */,
 				3B0435A71E4C669F0063B4D5 /* Settings.swift in Sources */,
+				3B033B1E1E6C46860049374A /* PostlFireBase.swift in Sources */,
+				3B033B201E6C4E590049374A /* PostSQL.swift in Sources */,
 				3BA52F861E37511C00776ABA /* Weather.swift in Sources */,
 				3BBECE861E23DFD9004355F8 /* homeViewController.swift in Sources */,
 				3BA52F7E1E2BDBA800776ABA /* postDetailsViewController.swift in Sources */,
+				3B033B1C1E6C39FD0049374A /* Post.swift in Sources */,
 				3BA52F7C1E2BD1CF00776ABA /* postTableViewController.swift in Sources */,
 				3BA52F781E2BC22900776ABA /* settingsViewController.swift in Sources */,
 			);

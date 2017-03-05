@@ -327,13 +327,18 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add Post" id="t0p-uX-9Hb">
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="z6K-py-IA3"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Post" id="z6K-py-IA3">
+                            <connections>
+                                <action selector="addPost:" destination="ykD-1s-aUt" id="eX6-Nc-eQm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="desc" destination="bkO-ii-ZjR" id="BoA-J4-Fde"/>
                         <outlet property="gps" destination="DqX-i3-ajd" id="WOV-Cr-NLv"/>
                         <outlet property="img" destination="IxV-eZ-6N9" id="gjF-QG-GxV"/>
+                        <outlet property="postBtn" destination="z6K-py-IA3" id="jiQ-FP-rMa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVN-he-5oT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1081,6 +1086,6 @@
         <image name="social" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dqi-TD-chg"/>
+        <segue reference="Cg0-ns-cKm"/>
     </inferredMetricsTieBreakers>
 </document>

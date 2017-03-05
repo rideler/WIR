@@ -53,4 +53,9 @@ class UserAuth{
     func getUserId()->String{
         return (FIRAuth.auth()?.currentUser?.uid)!
     }
+    
+    func getUserName()->String{
+        print ("\(FIRAuth.auth()?.currentUser?.email!)")
+        return (FIRAuth.auth()?.currentUser?.email!)!
+    }
 }
