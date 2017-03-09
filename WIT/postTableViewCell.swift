@@ -11,6 +11,7 @@ import UIKit
 class postTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var usr: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var postIMG: UIImageView!

@@ -175,10 +175,11 @@ class Model{
             
             //get the complete list from local DB
             let totalList = Post.getAllPostsFromLocalDb(database: self.postSQL?.database)
+            let newList = totalList.sorted(by: {$0.lastUpdate! > $1.lastUpdate!})
             
             //return the list to the observers using notification center
             NotificationCenter.default.post(name: Notification.Name(rawValue:
-                notifyPostListUpdate), object:nil , userInfo:["posts":totalList])
+                notifyPostListUpdate), object:nil , userInfo:["posts":newList])
         })
     }
     

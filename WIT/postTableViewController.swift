@@ -47,10 +47,12 @@ class postTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! postTableViewCell
+        cell.spinner.startAnimating()
         cell.location!.text = self.postList[indexPath.row].locate
         cell.usr!.text = self.postList[indexPath.row].user
         Model.instance.getImage(urlStr: self.postList[indexPath.row].imageUrl, callback: { (image) in
             cell.imageView!.image = image
+            cell.spinner.stopAnimating()
         })
         return cell
     }
