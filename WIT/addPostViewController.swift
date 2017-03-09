@@ -48,12 +48,14 @@ class addPostViewController: UIViewController, UINavigationControllerDelegate,UI
     }
     
     @IBAction func addPost(_ sender: UIBarButtonItem) {
-        let pid = String(NSDate().timeIntervalSince1970)
-
+        let pid = String(Int(NSDate().timeIntervalSince1970))
+        print("\(pid)")
             Model.instance.saveImage(image: img.image!, name: pid){(url) in
                 let ps = Post(id: pid, user: Model.instance.getUserName(), imageUrl: url!, dsc: self.desc.text, locate: self.gps.text!, lastUpdate: nil)
                 Model.instance.addPost(ps: ps)
+                _ = self.navigationController?.popToRootViewController(animated: false)
                 self.tabBarController?.selectedIndex = 3
+                
         }
     }
     

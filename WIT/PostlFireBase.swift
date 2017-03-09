@@ -20,7 +20,7 @@ class PostlFireBase{
     
     
     func addPost(ps:Post, completionBlock:@escaping (Error?)->Void){
-        let ref = FIRDatabase.database().reference().child("posts").child(Model.instance.getUserId()).child(ps.id)
+        let ref = FIRDatabase.database().reference().child("posts").child(ps.id)
         ref.setValue(ps.toFirebase())
         ref.setValue(ps.toFirebase()){(error, dbref) in
             completionBlock(error)
@@ -66,8 +66,8 @@ class PostlFireBase{
             for child in snapshot.children.allObjects{
                 if let childData = child as? FIRDataSnapshot{
                     if let json = childData.value as? Dictionary<String,Any>{
-                        let st = Post(json: json)
-                        posts.append(st)
+                        let ps = Post(json: json)
+                        posts.append(ps)
                     }
                 }
             }
