@@ -7,9 +7,11 @@
 //
 
 import Foundation
+
+//holds list of workable locations
 class Location{
     private var locations = [[String]]()
-    
+    //the list of locations that the api can work with
     init() {
         locations.append(["israel"])
         locations[0].append("Jerusalem")
@@ -42,10 +44,12 @@ class Location{
         locations[9].append("Brasilia")
     }
     
+    //getting the list of locations in 2D array form
     func getLocations() -> [[String]] {
         return locations
     }
     
+    //getting the list of locations in array form, when city and country are in the same cell
     func getStringLocations() -> [String] {
         var list = [String]()
         let numColumns = locations.count-1
@@ -55,6 +59,7 @@ class Location{
         return list
     }
     
+    //returning the number of row in the list where the specific locations is
     func searchRow(city:String,country:String) -> Int? {
         for i in (0..<self.locations.count)
         {
@@ -66,12 +71,12 @@ class Location{
         return nil
     }
     
+    //get the city name by it's row number
     func getCity(row:Int) -> String{
         return locations[row][1]
     }
     
-    
-    
+    //get the country name by it's row number
     func getCountry(row:Int) -> String{
         return locations[row][0]
     }

@@ -9,12 +9,13 @@
 
 import Foundation
 
-
+//model for last update table
 class LastUpdateTable{
+    //sql parameters
     static let TABLE = "LAST_UPDATE"
     static let NAME = "NAME"
     static let DATE = "DATE"
-    
+    // deletes last update table
     static func drop(database:OpaquePointer?)->Bool{
         var errormsg: UnsafeMutablePointer<Int8>? = nil
         
@@ -25,7 +26,7 @@ class LastUpdateTable{
         return true
     }
     
-    
+    //creates last update table
     static func createTable(database:OpaquePointer?)->Bool{
         var errormsg: UnsafeMutablePointer<Int8>? = nil
         
@@ -38,7 +39,7 @@ class LastUpdateTable{
         
         return true
     }
-    
+    //updating the last update
     static func setLastUpdate(database:OpaquePointer?, table:String, lastUpdate:Date){
         var sqlite3_stmt: OpaquePointer? = nil
         if (sqlite3_prepare_v2(database,"INSERT OR REPLACE INTO "
@@ -57,7 +58,7 @@ class LastUpdateTable{
         }
         sqlite3_finalize(sqlite3_stmt)
     }
-    
+    //getting the last update
     static func getLastUpdateDate(database:OpaquePointer?, table:String)->Date?{
         var uDate:Date?
         var sqlite3_stmt: OpaquePointer? = nil

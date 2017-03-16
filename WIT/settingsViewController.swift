@@ -25,8 +25,7 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let lctn = Location()
-        self.list = lctn.getStringLocations()
+        self.list = Model.instance.getStringLocations()
         self.dataPicker.delegate = self
         
         Model.instance.getSettings(){ (settings) in
@@ -36,7 +35,7 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
             self.city = settings.city
         }
         
-        self.dataPicker.selectRow(lctn.searchRow(city: self.city, country: self.country)!, inComponent: 0, animated: false)
+        self.dataPicker.selectRow(Model.instance.searchRowLocation(city: self.city, country: self.country)!, inComponent: 0, animated: false)
 
         rainSlider.value = Float(self.pop)
         periodSlider.value = Float(self.period)

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//table view for all the posts
 class postTableViewController: UITableViewController {
     
     var postList = [Post]()
@@ -15,16 +15,16 @@ class postTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //getting all posts from Model
         NotificationCenter.default.addObserver(self, selector:
             #selector(addPostViewController.postsListDidUpdate),name: NSNotification.Name(rawValue: notifyPostListUpdate),object: nil)
         Model.instance.getAllPostsAndObserve()
     }
-    
+    //default init using notifications
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+    //updataing the post acording to the notifications
     @objc func postsListDidUpdate(notification:NSNotification){
         self.postList = notification.userInfo?["posts"] as! [Post]
         let newList = self.postList.sorted(by: {$0.lastUpdate! > $1.lastUpdate!})
@@ -37,16 +37,15 @@ class postTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
-    
+    //setting number of sections to the table view to 1
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+    //getting the amount of posts in the table view
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.postList.count
     }
-    
+    //getting cell from the table view
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! postTableViewCell
         cell.spinner.startAnimating()
@@ -69,7 +68,8 @@ class postTableViewController: UITableViewController {
         if let psDetailsVc = segue.destination as? postDetailsViewController{
             psDetailsVc.user = self.postList[self.selectedIndex!].user
             psDetailsVc.locate = self.postList[self.selectedIndex!].locate
-            psDetailsVc.pblishDate = String(describing: self.postList[self.selectedIndex!].lastUpdate!)
+            psDetailsVc.pblishDate = self.postList[self.selectedIndex!].lastUpdate!
+                //String(describing: self.postList[self.selectedIndex!].lastUpdate!)
             if (self.postList[self.selectedIndex!].dsc != nil){
                 psDetailsVc.dsc = self.postList[self.selectedIndex!].dsc
             }
@@ -81,7 +81,7 @@ class postTableViewController: UITableViewController {
             })
 
         }}
-    
+    //send details of selected post to postDetailsViewController
      override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
             selectedIndex = indexPath.row
             self.performSegue(withIdentifier: "presentPostDetails", sender: self)

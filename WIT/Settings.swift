@@ -8,6 +8,7 @@
 
 import Foundation
 
+//defines the settings and how to read/write them
 class Settings {
     static let SE_TABLE = "SETTINGS"
     static let SE_pop = "POP"
@@ -29,23 +30,26 @@ class Settings {
         self.country = country
     }
     
+    //creating table for local DB where the settings will be saved for next login in the device
     static func createTable(database:OpaquePointer?)->Bool{
         var errormsg: UnsafeMutablePointer<Int8>? = nil
-        
+        //create the table using sql command
         let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS " + SE_TABLE + " ( " + SE_id + " INT PRIMARY KEY, "
             + SE_pop + " INT, "
             + SE_period + " INT, "
             + SE_country + " TEXT, "
             + SE_city + " TEXT)",nil,nil, &errormsg);
+        //if creating the table fails return false
         if(res != 0){
             return false
         }
-        
         return true
     }
     
+    //change the settings in the local DB
     func changeSettingsToLocalDb(database:OpaquePointer?){
         var sqlite3_stmt: OpaquePointer? = nil
+        //check if change was possible to local DB
         if (sqlite3_prepare_v2(database,"INSERT OR REPLACE INTO " + Settings.SE_TABLE
             + "(" + Settings.SE_id + ","
             + Settings.SE_pop + ","
@@ -72,9 +76,11 @@ class Settings {
         sqlite3_finalize(sqlite3_stmt)
     }
     
+    //return settings after reading from local DB
     static func getSettingsFromLocalDb(database:OpaquePointer?)->Settings{
         var sqlite3_stmt: OpaquePointer? = nil
         var getSttings:Settings?
+        //checks if query was possible
         if (sqlite3_prepare_v2(database,"SELECT * from SETTINGS;",-1,&sqlite3_stmt,nil) == SQLITE_OK){
             if(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
                 let getPop =  sqlite3_column_int(sqlite3_stmt,1)
@@ -87,6 +93,7 @@ class Settings {
             }
         }
         sqlite3_finalize(sqlite3_stmt)
+        //if query failed, default parameters will be shown
         if getSttings == nil{
             getSttings = Settings(pop: 35, period: 5, city: "Jerusalem", country: "israel")
         }

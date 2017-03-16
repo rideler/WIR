@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ view controller for the post details, this class shows all the details about selected post
+ */
 class postDetailsViewController: UIViewController {
 
     @IBOutlet weak var descIMG: UIImageView!
@@ -19,18 +22,17 @@ class postDetailsViewController: UIViewController {
     var img: UIImage?
     var dsc: String?
     var locate: String?
-    var pblishDate: String?
+    var pblishDate: Date?
     var user: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //initilazing all the members of the view controller
         self.descIMG.image = img
         self.desc.text = dsc
         self.lction.text = locate
-        self.publishDate.text = pblishDate
+        self.publishDate.text = pblishDate?.stringValue
         self.usrName.text = user
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,10 +40,15 @@ class postDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+     this func returns you to the root page of the social tab when exiting this page
+ 
+    */
     open override func viewDidDisappear(_ animated: Bool) {
         _ = self.navigationController?.popToRootViewController(animated: false)
     }
 
+    
     /*
     // MARK: - Navigation
 

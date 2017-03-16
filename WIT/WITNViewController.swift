@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//view for checking if it's going to rain with specific parmaters
 class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource {
 
     var list = [String]()
@@ -23,13 +23,12 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var wirPic: UIImageView!
     @IBOutlet weak var periodValue: UILabel!
     
-    let wit = Weather()
-    let lctn = Location()
-    
+    //when loading, getting list of locations to show and enabling the default buttons
+    //also setting the dates to default
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.list = lctn.getStringLocations()
+        self.list = Model.instance.getStringLocations()
         self.lctions.delegate = self
         
         periodSlider.isEnabled = true
@@ -49,8 +48,6 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         self.startDate.date = currentDate as Date
         self.endDate.date = currentDate as Date
         
-       // let hour = calender.component(NSCalendar.Unit.hour, from: startDate.date)
-        
         self.startDate.minimumDate = minDate as Date
         self.startDate.maximumDate = maxDate as Date
         
@@ -64,7 +61,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         periodValue.text = "\(currentValue)"
         // Do any additional setup after loading the view.
     }
-
+    //updating the dates for upper and lower limit
     @IBAction func DateChanged(_ sender: UIDatePicker) {
         wirPic.image = nil
      
@@ -76,17 +73,15 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         if hoursBetween.hour! < 0 {
             self.endDate.date = self.endDate.minimumDate!
         }
- //       let hour = calender.component(NSCalendar.Unit.hour, from: startDate.date)
-        
     }
-    
+    //showing the current value of the period slider
     @IBAction func periodChanged(_ sender: UISlider) {
         wirPic.image = nil
         let currentValue = Int(periodSlider.value)
         periodValue.text = "\(currentValue)"
     }
     
-    
+    //showing the current value of the pop slider
     @IBAction func valueChanged(_ sender: UISlider) {
         wirPic.image = nil
         let currentValue = Int(slider.value)
@@ -98,7 +93,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         // Dispose of any resources that can be recreated.
     }
     
-    
+    //sending the parameters to Model to check if it's going to rain
     @IBAction func check(_ sender: UIButton) {
         
         let calender = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
@@ -110,16 +105,16 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
             let startEpoch = Int(calender.date(from: startDay)!.timeIntervalSince1970)
             
             let hoursBetween = calender.components(NSCalendar.Unit.hour, from: self.startDate.date, to: self.endDate.date, options: NSCalendar.Options.matchStrictly)
-            let res = wit.getWeather(country: lctn.getCountry(row: lctionRow),city: lctn.getCity(row: lctionRow), startTime: startEpoch, period: Int((hoursBetween.hour?.toIntMax())! + 24), pop: Int(pop))
+            let res = Model.instance.getWeather(country: Model.instance.getCountry(row: lctionRow),city: Model.instance.getCity(row: lctionRow), startTime: startEpoch, period: Int((hoursBetween.hour?.toIntMax())! + 24), pop: Int(pop))
             yesORno(answer: res)
             
         }
         else{
-            let res = wit.getWeather(country: lctn.getCountry(row: lctionRow),city: lctn.getCity(row: lctionRow), startTime: Int(NSDate().timeIntervalSince1970), period: Int(self.periodSlider.value) , pop: Int(pop))
+            let res = Model.instance.getWeather(country: Model.instance.getCountry(row: lctionRow),city: Model.instance.getCity(row: lctionRow), startTime: Int(NSDate().timeIntervalSince1970), period: Int(self.periodSlider.value) , pop: Int(pop))
             yesORno(answer: res)
         }
     }
-
+    //enabling the dates or the period slider
     @IBAction func switchChange(_ sender: UISwitch) {
         if (sender.isOn){
             self.periodSlider.isEnabled = false
@@ -132,7 +127,7 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
             self.endDate.isEnabled = false
         }
     }
-    
+    //showing the answer in picture if it's going to rain
     func yesORno(answer: Bool){
         if answer{
             wirPic.image = #imageLiteral(resourceName: "yes-rain")
@@ -142,20 +137,20 @@ class WITNViewController: UIViewController , UIPickerViewDelegate, UIPickerViewD
         }
     }
     
-    
+    //returning number of components in picker view
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+    //returning number of items in picker view
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return list.count
     }
-    
+    //returing the chosen item
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         self.view.endEditing(true)
         return list[row]
     }
-    
+    //changing the row number selected
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         wirPic.image = nil
         self.lctionRow = row

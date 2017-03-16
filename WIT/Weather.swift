@@ -8,18 +8,19 @@
 
 import Foundation
 
+//calculate the chance for rain, it calls the weather api
 class Weather {
     private let openWeatherMapBaseURL = "https://api.wunderground.com/api/59c65dea745e9573/hourly10day/q/"
     private var popIndex = 0
     private var epoIndex = 0
-
+    //function returns true or false acording to the parameters it gets
     func getWeather(country: String, city: String, startTime: Int, period: Int, pop: Int) -> Bool {
         
         // This is a pretty simple networking task, so the shared session will do.
         let session = URLSession.shared
         var res:Bool? = nil
         var cnt = period
-        
+        //the adress of the weather api
         let weatherRequestURL = URL(string: "\(openWeatherMapBaseURL)\(country)/\(city).json")!
         
         // The data task retrieves the data.
@@ -57,6 +58,7 @@ class Weather {
                             if (cnt == 0) {
                                 break
                             }
+                            //reading the json answer from to api to parts that are more workable
                             temp = "\(obj)".components(separatedBy: ";")
                             let tempEpo = temp[self.epoIndex].components(separatedBy: "=")
                             if let intVersion = Int(tempEpo[1].trimmingCharacters(in: .whitespacesAndNewlines)){

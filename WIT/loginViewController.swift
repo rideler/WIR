@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//view for the login page
 class loginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var errorMsg: UILabel!
@@ -28,7 +28,8 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //func for clicking on the login button
+    //checks using FB if the user is allowed to login
     @IBAction func logBTN(_ sender: UIButton) {
         Model.instance.login(email: userIN.text!, pwd: passIN.text!){(pass) in
             if (pass){
@@ -42,7 +43,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
+    //func for enabling return key in keyboarding while writing
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         return true
