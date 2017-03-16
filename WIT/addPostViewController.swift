@@ -24,7 +24,7 @@ class addPostViewController: UIViewController, UINavigationControllerDelegate,UI
         desc.delegate = self
         gps.delegate = self
         // Do any additional setup after loading the view.
-        gps.addTarget(self, action: #selector(addPostViewController.textFieldDidChangeText(_:)), for: UIControlEvents.editingChanged)
+        gps.addTarget(self, action: #selector(addPostViewController.ChangeText(_:)), for: UIControlEvents.editingChanged)
         
         img.image = postImg
         // Do any additional setup after loading the view.
@@ -72,7 +72,7 @@ class addPostViewController: UIViewController, UINavigationControllerDelegate,UI
         return true
     }
     
-    func textFieldDidChangeText(_ textField: UITextField){
+    func ChangeText(_ textField: UITextField){
         updateSaveButtonState()
     }
     
@@ -80,7 +80,7 @@ class addPostViewController: UIViewController, UINavigationControllerDelegate,UI
         if (text == "\n"){
             textView.resignFirstResponder()
         }
-        return true
+        return (textView.text.characters.count+(text.characters.count-range.length) <= 100)
     }
     /*
     // MARK: - Navigation

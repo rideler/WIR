@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WIT/postTableViewController.swift"
-            timestampString = "510765268.166947"
+            timestampString = "511361277.9426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "postsListDidUpdate(notification:)"
             landmarkType = "7">
          </BreakpointContent>

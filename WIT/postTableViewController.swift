@@ -27,6 +27,8 @@ class postTableViewController: UITableViewController {
     
     @objc func postsListDidUpdate(notification:NSNotification){
         self.postList = notification.userInfo?["posts"] as! [Post]
+        let newList = self.postList.sorted(by: {$0.lastUpdate! > $1.lastUpdate!})
+        self.postList = newList
         self.tableView!.reloadData()
     }
     
