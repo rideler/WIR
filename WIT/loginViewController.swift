@@ -8,7 +8,7 @@
 
 import UIKit
 
-class loginViewController: UIViewController {
+class loginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var errorMsg: UILabel!
     @IBOutlet weak var userIN: UITextField!
@@ -16,6 +16,8 @@ class loginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userIN.delegate = self
+        passIN.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -41,7 +43,11 @@ class loginViewController: UIViewController {
         }
     }
 
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
+    }
+
     /*
      // MARK: - Navigation
      

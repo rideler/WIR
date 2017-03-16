@@ -18,7 +18,6 @@ class SettingsSQL{
             let path = dir.appendingPathComponent(dbFileName)
             
             if sqlite3_open(path.absoluteString, &database) != SQLITE_OK {
-                print("Failed to open db file: \(path.absoluteString)")
                 return nil
             }
         }

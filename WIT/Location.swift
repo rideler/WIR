@@ -56,8 +56,6 @@ class Location{
     }
     
     func searchRow(city:String,country:String) -> Int? {
-        print("Country \(country)")
-        print(" city \(city)")
         for i in (0..<self.locations.count)
         {
             if ((self.locations[i][0] == country) && (self.locations[i][1] == city))
@@ -69,14 +67,12 @@ class Location{
     }
     
     func getCity(row:Int) -> String{
-        print("city \(locations[row][1])")
         return locations[row][1]
     }
     
     
     
     func getCountry(row:Int) -> String{
-        print("Country \(locations[row][0])")
         return locations[row][0]
     }
 }

@@ -38,7 +38,6 @@ class Settings {
             + SE_country + " TEXT, "
             + SE_city + " TEXT)",nil,nil, &errormsg);
         if(res != 0){
-            print("error creating table");
             return false
         }
         
@@ -67,7 +66,7 @@ class Settings {
             sqlite3_bind_text(sqlite3_stmt, 5, new_city,-1,nil);
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                print("new row added succefully")
+               //print("new row added succefully")
             }
         }
         sqlite3_finalize(sqlite3_stmt)
@@ -83,7 +82,6 @@ class Settings {
                 let getCountry = String(validatingUTF8: sqlite3_column_text(sqlite3_stmt, 3))
                 let getCity =  String(validatingUTF8:sqlite3_column_text(sqlite3_stmt,4))
             
-                print("read from filter st: \(getPop) \(getPeriod) \(getCountry) \(getCity)")
             
                 getSttings = Settings(pop: Int(getPop), period: Int(getPeriod), city: getCity!, country: getCountry!)
             }

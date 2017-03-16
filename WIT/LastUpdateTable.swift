@@ -15,13 +15,14 @@ class LastUpdateTable{
     static let NAME = "NAME"
     static let DATE = "DATE"
     
-    static func drop(database:OpaquePointer?){
+    static func drop(database:OpaquePointer?)->Bool{
         var errormsg: UnsafeMutablePointer<Int8>? = nil
         
         let res = sqlite3_exec(database, "DROP TABLE " + TABLE + " ; ", nil, nil, &errormsg);
         if(res != 0){
-            print("error droping LastUpdateTable");
+            return false
         }
+        return true
     }
     
     
@@ -32,7 +33,6 @@ class LastUpdateTable{
             + NAME + " TEXT PRIMARY KEY, "
             + DATE + " DOUBLE)", nil, nil, &errormsg);
         if(res != 0){
-            print("error creating table");
             return false
         }
         
@@ -52,7 +52,7 @@ class LastUpdateTable{
             sqlite3_bind_double(sqlite3_stmt, 2, lastUpdate.dateToDouble());
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                print("new row added succefully")
+                //print("new row added succefully")
             }
         }
         sqlite3_finalize(sqlite3_stmt)

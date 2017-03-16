@@ -8,7 +8,7 @@
 
 import UIKit
 
-class addPostViewController: UIViewController, UINavigationControllerDelegate,UITextFieldDelegate {
+class addPostViewController: UIViewController, UINavigationControllerDelegate,UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var postBtn: UIBarButtonItem!
     @IBOutlet weak var img: UIImageView!
@@ -21,9 +21,10 @@ class addPostViewController: UIViewController, UINavigationControllerDelegate,UI
         super.viewDidLoad()
         navigationController?.delegate = self
         
+        desc.delegate = self
         gps.delegate = self
         // Do any additional setup after loading the view.
-        gps.addTarget(self, action: #selector(addPostViewController.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        gps.addTarget(self, action: #selector(addPostViewController.textFieldDidChangeText(_:)), for: UIControlEvents.editingChanged)
         
         img.image = postImg
         // Do any additional setup after loading the view.
@@ -41,15 +42,11 @@ class addPostViewController: UIViewController, UINavigationControllerDelegate,UI
     }
     
     @objc func postsListDidUpdate(notification:NSNotification){
-        let posts = notification.userInfo?["posts"] as! [Post]
-        for ps in posts {
-            print("name: \(ps.user) \(ps.lastUpdate!)")
-        }
+        _ = notification.userInfo?["posts"] as! [Post]
     }
     
     @IBAction func addPost(_ sender: UIBarButtonItem) {
         let pid = String(Int(NSDate().timeIntervalSince1970))
-        print("\(pid)")
             Model.instance.saveImage(image: img.image!, name: pid){(url) in
                 let ps = Post(id: pid, user: Model.instance.getUserName(), imageUrl: url!, dsc: self.desc.text, locate: self.gps.text!, lastUpdate: nil)
                 Model.instance.addPost(ps: ps)
@@ -75,8 +72,15 @@ class addPostViewController: UIViewController, UINavigationControllerDelegate,UI
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField){
+    func textFieldDidChangeText(_ textField: UITextField){
         updateSaveButtonState()
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n"){
+            textView.resignFirstResponder()
+        }
+        return true
     }
     /*
     // MARK: - Navigation

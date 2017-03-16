@@ -66,7 +66,6 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("\(list[row])")
         self.country = Location().getCountry(row: row)
         self.city = Location().getCity(row: row)
         //save location to db
@@ -92,7 +91,6 @@ class settingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
 
     @IBAction func logout(_ sender: UIButton) {
         Model.instance.logout(){(pass) in
-            print("\(pass)")
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.afterLogout()
         }

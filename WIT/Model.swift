@@ -107,7 +107,7 @@ class Model{
     
     func addPost(ps:Post){
         postFB?.addPost(ps: ps){(error) in
-            print("\(error)")
+            //print("\(error)")
         }
     }
     
@@ -121,7 +121,6 @@ class Model{
         // get all updated records from firebase
         postFB?.getAllPosts(lastUpdateDate, callback: { (posts) in
             //update the local db
-            print("got \(posts.count) new records from FB")
             var lastUpdate:Date?
             for ps in posts{
                 ps.addPostToLocalDb(database: self.postSQL?.database)
@@ -150,12 +149,9 @@ class Model{
     func getAllPostsAndObserve(){
         // get last update date from SQL
         let lastUpdateDate = LastUpdateTable.getLastUpdateDate(database: postSQL?.database, table: Post.PS_TABLE)
-        print("\(lastUpdateDate) = \(lastUpdateDate?.dateToDouble())")
-        //lastUpdateDate = nil;
         // get all updated records from firebase
         postFB?.getAllPostsAndObserve(lastUpdateDate, callback: { (posts) in
             //update the local db
-            print("got \(posts.count) new records from FB")
             var lastUpdate:Date?
             for ps in posts{
                 ps.addPostToLocalDb(database: self.postSQL?.database)
@@ -175,11 +171,11 @@ class Model{
             
             //get the complete list from local DB
             let totalList = Post.getAllPostsFromLocalDb(database: self.postSQL?.database)
-            let newList = totalList.sorted(by: {$0.lastUpdate! > $1.lastUpdate!})
+            //let newList = totalList.sorted(by: {$0.lastUpdate! > $1.lastUpdate!})
             
             //return the list to the observers using notification center
             NotificationCenter.default.post(name: Notification.Name(rawValue:
-                notifyPostListUpdate), object:nil , userInfo:["posts":newList])
+                notifyPostListUpdate), object:nil , userInfo:["posts":totalList])
         })
     }
     

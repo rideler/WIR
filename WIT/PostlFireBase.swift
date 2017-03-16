@@ -52,7 +52,6 @@ class PostlFireBase{
         
         let ref = FIRDatabase.database().reference().child("posts")
         if (lastUpdateDate != nil){
-            print("q starting at:\(lastUpdateDate!) \(lastUpdateDate!.dateToDouble())")
             let fbQuery = ref.queryOrdered(byChild:"lastUpdate").queryStarting(atValue:lastUpdateDate!.dateToDouble())
             fbQuery.observeSingleEvent(of: .value, with: handler)
         }else{
@@ -71,12 +70,12 @@ class PostlFireBase{
                     }
                 }
             }
-            callback(posts)
+            let newList = posts.sorted(by: {$0.lastUpdate! > $1.lastUpdate!})
+            callback(newList)
         }
         
         let ref = FIRDatabase.database().reference().child("posts")
         if (lastUpdateDate != nil){
-            print("q starting at:\(lastUpdateDate!) \(lastUpdateDate!.dateToDouble())")
             let fbQuery = ref.queryOrdered(byChild:"lastUpdate").queryStarting(atValue:lastUpdateDate!.dateToDouble())
             fbQuery.observe(FIRDataEventType.value, with: handler)
         }else{

@@ -64,12 +64,16 @@ class Post{
         return json
     }
     
-    static func drop(database:OpaquePointer?){
+    static func drop(database:OpaquePointer?)->Bool{
         var errormsg: UnsafeMutablePointer<Int8>? = nil
         
         let res = sqlite3_exec(database, "DROP TABLE " + PS_TABLE + " ; " , nil, nil, &errormsg);
         if(res != 0){
-            print("error creating table");
+            return false
+        }
+        else
+        {
+            return true
         }
     }
     
@@ -84,7 +88,6 @@ class Post{
             + PS_DSC + " TEXT, "
             + PS_LAST_UPDATE + " DOUBLE)", nil, nil, &errormsg);
         if(res != 0){
-            print("error creating table");
             return false
         }
         
@@ -121,7 +124,7 @@ class Post{
             sqlite3_bind_double(sqlite3_stmt, 6, lastUpdate!.dateToDouble());
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                print("new row added succefully")
+                //print("new row added succefully")
             }
         }
         sqlite3_finalize(sqlite3_stmt)
@@ -138,7 +141,6 @@ class Post{
                 let locate =  String(validatingUTF8:sqlite3_column_text(sqlite3_stmt,3))
                 var dsc =  String(validatingUTF8:sqlite3_column_text(sqlite3_stmt,4))
                 let update =  Double(sqlite3_column_double(sqlite3_stmt,5))
-                print("read from filter st: \(psID) \(user) \(imageUrl)")
                 if (dsc != nil && dsc == ""){
                     dsc = nil
                 }

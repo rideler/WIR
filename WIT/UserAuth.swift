@@ -28,7 +28,6 @@ class UserAuth{
     func login(email:String, pwd:String, callback:@escaping (Bool)->Void){
         FIRAuth.auth()?.signIn(withEmail: email, password: pwd) { (user, error) in
             if error != nil{
-                print("\(error)")
                 callback(false)
             }else{
                 callback(true)
@@ -55,7 +54,6 @@ class UserAuth{
     }
     
     func getUserName()->String{
-        print ("\(FIRAuth.auth()?.currentUser?.email!)")
         return (FIRAuth.auth()?.currentUser?.email!)!
     }
 }

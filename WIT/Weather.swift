@@ -15,7 +15,6 @@ class Weather {
 
     func getWeather(country: String, city: String, startTime: Int, period: Int, pop: Int) -> Bool {
         
-        print("epoch: \(startTime) period \(period)")
         // This is a pretty simple networking task, so the shared session will do.
         let session = URLSession.shared
         var res:Bool? = nil
@@ -26,10 +25,10 @@ class Weather {
         // The data task retrieves the data.
         let dataTask = session.dataTask(with: weatherRequestURL) {
             (data: Data?, response: URLResponse?, error: Error?) in
-            if let error = error {
+            if error != nil {
                 // Case 1: Error
                 // We got some kind of error while trying to get data from the server.
-                print("Error:\n\(error)")
+                res = false
             }
             else {
                 // Case 2: Success
@@ -68,7 +67,6 @@ class Weather {
                                         if let intPop = Int(tempPop[1].trimmingCharacters(in: .whitespacesAndNewlines)){
                                             if intPop >= pop {
                                                 res = true
-                                                print("pop \(intPop) index \(cnt)")
                                                 break
                                                 
                                             }
@@ -92,7 +90,6 @@ class Weather {
         // The data task is set up...launch it!
         dataTask.resume()
         while (res == nil){}
-        print ("\(res)")
         return res!
     }
     

@@ -18,7 +18,6 @@ class PostSQL {
             let path = dir.appendingPathComponent(dbFileName)
             
             if sqlite3_open(path.absoluteString, &database) != SQLITE_OK {
-                print("Failed to open db file: \(path.absoluteString)")
                 return nil
             }
         }
@@ -32,11 +31,9 @@ class PostSQL {
     }
     
     func clear(){
-        Post.drop(database: database)
-        LastUpdateTable.drop(database: database)
-        if Post.createTable(database: database) == false{
-        }
-        if LastUpdateTable.createTable(database: database) == false{
-        }
+        if Post.drop(database: database) == false{}
+        if LastUpdateTable.drop(database: database) == false{}
+        if Post.createTable(database: database) == false{}
+        if LastUpdateTable.createTable(database: database) == false{}
     }
 }
