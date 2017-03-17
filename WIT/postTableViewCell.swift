@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//view for prototype of table view cell
 class postTableViewCell: UITableViewCell {
 
     
@@ -19,7 +19,7 @@ class postTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    //enabling choosing cell from the list
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

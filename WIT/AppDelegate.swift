@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        //checking if user is logged in
         if (Model.instance.isLogedIn()){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainVc = storyboard.instantiateViewController(withIdentifier: "MainController")
@@ -28,14 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
-    
+    //showing user home view after log in
     func afterLogin(){
         window?.rootViewController?.dismiss(animated: true, completion: nil)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVc = storyboard.instantiateViewController(withIdentifier: "MainController")
         window?.rootViewController = mainVc
     }
-    
+    //showing user logging view after logging out
     func afterLogout(){
         window?.rootViewController?.dismiss(animated: true, completion: nil)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

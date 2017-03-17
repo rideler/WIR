@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//view for enabling camera
 class cameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     let imagePicker = UIImagePickerController()
